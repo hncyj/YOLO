@@ -1,11 +1,6 @@
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 import torch
 import torch.nn as nn
-from utils.utils import GlobalAvgPool2d, Conv, Flatten
+from utils.utils_v1 import GlobalAvgPool2d, Conv, Flatten
 
 
 class BACKBONE(nn.Module):
@@ -136,9 +131,7 @@ class YOLOv1(nn.Module):
 if __name__ == '__main__':
     yolo = YOLOv1()
 
-    # Dummy image
+    # Test image
     image = torch.randn(2, 3, 448, 448)  # torch.Size([2, 3, 448, 448])
-
     output = yolo(image)
-
     print(output.size())  # torch.Size([2, 7, 7, 30])
